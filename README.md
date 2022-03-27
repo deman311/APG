@@ -9,7 +9,7 @@ Some people on the internet have figured out that the link is a combination of 6
 So I figured out that I can write a function that will generate you a given amount of pictures at a click of a botton so that you can explore the random print-screens more throughtly. This first started as a side function of my other project 'CoronaBot' (check out my other repository: https://github.com/deman311/CoronaBot), as a Discord bot feature and it would generate you 5 random pictures each time you called the command '!prnt'.
 
 #### Old Discord Implementation
-[discord bot prnt gif]
+![discord bot prnt gif](/git_assets/oldprnt.gif "The unthreaded version - very slow!")
 
 ## JavaFX Application 🎨
 After seeing that me and a few friends liked the idea because it had some kind of a 'chance game' element to it, I decided to upgrade the project and create a dedicated application for the feature using JavaFX. At first the application had the same feature as the bot with a single button called
