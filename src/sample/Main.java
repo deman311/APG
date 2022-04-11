@@ -10,10 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -37,7 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main extends Application {
 
-    final String VERSION = "1.5.2";           // EDIT THE VERSION HERE
+    final String VERSION = "1.5.2.1";           // EDIT THE VERSION HERE
     Random rand = new Random();
     boolean isListening = false;
 
@@ -74,11 +71,9 @@ public class Main extends Application {
         vbox_em.setAlignment(Pos.CENTER);
         vbox_em.setSpacing(20);
         Scene em_scene = new Scene(vbox_em, 300, 100);
-        em_scene.setOnDragOver(ae -> {
-            ae.acceptTransferModes(TransferMode.COPY);
-        });
+        em_scene.setOnDragOver(ae -> ae.acceptTransferModes(TransferMode.COPY));
         em_scene.setOnDragDropped(de -> {
-            boolean success = false;
+            boolean success;
             if (de.getDragboard().hasFiles()) {
                 success = true;
                 String url = de.getDragboard().getFiles().get(0).getAbsolutePath();
@@ -188,22 +183,6 @@ public class Main extends Application {
                         "[ Changelog v" + VERSION + " ]\n\n" + changeLog,
                 "Welcome to APG v" + VERSION, JOptionPane.INFORMATION_MESSAGE);
 
-        //POOL BANNED IMAGES
-//        Button temp = new Button("Pool Banned");
-//        temp.setOnAction(ae ->{
-//            File pDir = new File("Bano");
-//            Pooler pt = new Pooler(3);
-//            for(File f : pDir.listFiles()) {
-//                Image img = pt.Pool(new Image(f.toURI().toString())); // pooled
-//                BufferedImage bf = SwingFXUtils.fromFXImage(img, null);
-//                try {
-//                    ImageIO.write(bf, "PNG", f);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
         // Sounds
         Media coinInsert = new Media(getClass().getResource("/Sounds/coin_insert.mp3").toExternalForm());
         Media cashInSound = new Media(getClass().getResource("/Sounds/bingo.mp3").toExternalForm());
@@ -281,11 +260,31 @@ public class Main extends Application {
         sbStage.setTitle("Soundboard");
         sbStage.setScene(sbScene);
         sbStage.show();
-        alwaysonCB.setOnAction(ae -> {
-            sbStage.setAlwaysOnTop(alwaysonCB.isSelected());
+        alwaysonCB.setOnAction(ae -> sbStage.setAlwaysOnTop(alwaysonCB.isSelected()));
+
+        //        POOL BANNED IMAGES
+        Button temp = new Button("Pool Banned");
+        temp.setOnAction(ae ->{
+            File pDir = new File("Bano");
+            Pooler pt = new Pooler(3);
+            for(File f : pDir.listFiles()) {
+                Image img = pt.Pool(new Image(f.toURI().toString())); // pooled
+                BufferedImage bf = SwingFXUtils.fromFXImage(img, null);
+                try {
+                    ImageIO.write(bf, "PNG", f);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
-//        mainBox.getChildren().add(temp);
+        AtomicBoolean poolActive = new AtomicBoolean(false);
+        scene.setOnKeyReleased(ae -> {
+            if(ae.getCode() == KeyCode.P && !poolActive.get()) {
+                poolActive.set(true);
+                mainBox.getChildren().add(temp);
+            }
+        });
 
         // Icons
         Image APGicon = new Image(getClass().getResource("/Program Images/APGico.png").toExternalForm());
@@ -580,14 +579,16 @@ public class Main extends Application {
         isListening = true;
 
         AtomicInteger atg = new AtomicInteger(0);
-        new Thread(() -> {
+        Thread t = new Thread(() -> {
             atg.set(VR_Server.awaitInput()); // amount to generate
             Platform.runLater(() -> {
                 slider.setValue(atg.get());
                 sliderbtn.fire();
                 isListening = false;
             });
-        }).start();
+        });
+        t.setDaemon(true);
+        t.start();
     }
 
     public void setBtnAction(HBox hbox, Media media, Button btn) {
