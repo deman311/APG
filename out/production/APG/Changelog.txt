@@ -1,6 +1,8 @@
-    todo:
-    [] validate working on actual hardware server.
-    [] add a serverip value.
+TODO: -- version 1.7.3
+    [x] validate working on actual hardware server.
+    [] add a server ip value.
+    [] clicking GOOD will remove the 'move to GOOD' option from menu.
+    [] better code encapsulation for readability.
 
 [!] Please submit any bugs to my Discord: digitalpoop#3636
 [!] If you come across a banned image, please notify me. (BitCoin Fraud)

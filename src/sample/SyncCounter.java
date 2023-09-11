@@ -8,7 +8,7 @@ public class SyncCounter {
     private int counter;
     private static int banCounter;
     private static int filterCounter;
-    private AtomicBoolean pullock = new AtomicBoolean(false);
+    private final AtomicBoolean pullock = new AtomicBoolean(false);
 
     public SyncCounter(int value) {
         counter = value;
