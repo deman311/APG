@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="microsoft.onnxruntime" type="repository">
+    <properties maven-id="com.microsoft.onnxruntime:onnxruntime:1.11.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/onnxruntime-1.11.01.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

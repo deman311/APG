@@ -57,7 +57,7 @@ public class VR_Server {
             byte[] buff = new byte[1024];
             int bytesRead = in.read(buff);
             byte[] newBuff = Arrays.copyOf(buff, bytesRead);
-            String text = new String(newBuff, "UTF-8");
+            String text = new String(newBuff, StandardCharsets.UTF_8);
             updateLog("Got: " + text);
             in.close();
             soc.close();

@@ -1,11 +1,15 @@
-    - Added 6 new banned images
+TODO: -- version 1.7.3
+    [x] validate working on actual hardware server.
+    [] add a server ip value.
+    [] clicking GOOD will remove the 'move to GOOD' option from menu.
+    [] better code encapsulation for readability.
 
-[!] Please submit any bugs to my Discord: Shwifty#8445
+[!] Please submit any bugs to my Discord: digitalpoop#3636
 [!] If you come across a banned image, please notify me. (BitCoin Fraud)
-[!] Images will delete with every refresh!
+[!] Uncategorized Images will be deleted with every refresh!
 
 [?] The application will download the images on your computer (will create a folder at the file directory),
     they will be deleted after every new search you make.
-[?] Use right click on image for extended commands.
+[?] Use right click on image for a quickmenu.
 
 [WARNING] GORE PORN CRINGE [WARNING]

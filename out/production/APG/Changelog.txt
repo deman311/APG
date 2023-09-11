@@ -1,11 +1,13 @@
-    - Added a new crucial banned images
+    todo:
+    [] validate working on actual hardware server.
+    [] add a serverip value.
 
-[!] Please submit any bugs to my Discord: Shwifty#8445
+[!] Please submit any bugs to my Discord: digitalpoop#3636
 [!] If you come across a banned image, please notify me. (BitCoin Fraud)
-[!] Images will delete with every refresh!
+[!] Uncategorized Images will be deleted with every refresh!
 
 [?] The application will download the images on your computer (will create a folder at the file directory),
     they will be deleted after every new search you make.
-[?] Use right click on image for extended commands.
+[?] Use right click on image for a quickmenu.
 
 [WARNING] GORE PORN CRINGE [WARNING]
